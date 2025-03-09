@@ -1,0 +1,38 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user_type.capitalize() }} Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to your {{ user_type }} Dashboard</h1>
+
+    {% if user_type == 'tutor' %}
+        <h3>Your Tutors:</h3>
+        <ul>
+            {% for tutor_name, tutor_info in tutors.items() %}
+                <li>{{ tutor_info.name }} - Subjects: {{ tutor_info.subjects }} 
+                    <form action="{{ url_for('start_class', tutor_name=tutor_name) }}" method="POST">
+                        <button type="submit">Start a Class</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif user_type == 'student' %}
+        <h3>Your Students:</h3>
+        <ul>
+            {% for student_name, student_info in students.items() %}
+                <li>{{ student_info.name }} - Progress: {{ student_info.progress }}
+                    <form action="{{ url_for('track_progress', student_name=student_name) }}" method="POST">
+                        <input type="text" name="progress" placeholder="Update Progress">
+                        <button type="submit">Update Progress</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

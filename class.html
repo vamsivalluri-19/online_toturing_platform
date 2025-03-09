@@ -1,0 +1,18 @@
+<!-- templates/class.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Class</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Live Class with {{ tutor.name }}</h1>
+    <h3>Subjects: {{ tutor.subjects }}</h3>
+    <div>
+        <p>Begin your class here. You can add a video call integration, a whiteboard, or chat for a full-featured experience.</p>
+        <button onclick="window.location.href='/'">End Class</button>
+    </div>
+</body>
+</html>
